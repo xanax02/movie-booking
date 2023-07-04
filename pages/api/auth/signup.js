@@ -19,13 +19,22 @@ async function handler(req,res) {
 
     const db = client.db();
 
+    //checking if the user already exists
+    const oldUser = db.collection('users').findOne({email: email});
+    if(oldUser) {
+        res.status(422).json({ message: 'User already exists' });
+        client.close();
+        return ;
+    }
+
     await db.collection('users').insertOne({
         username,
         email,
         hashedPass
     })
-    
+
     res.status(201).json({ message: 'Successfully created new user' });
+    client.close();
 }
 
 export default handler;

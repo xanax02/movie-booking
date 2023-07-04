@@ -16,7 +16,7 @@ const Auth = (props) => {
     //signup button function handler
     const signupHandler = async() => { 
         try{
-            await fetch('/api/auth/signup', {
+            const response = await fetch('/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,6 +28,8 @@ const Auth = (props) => {
                     confirm_password: confPass.current.value
                 })
             })
+            const data = await response.json();
+            console.log(data);
         }catch(error) {
             console.log(error);
         }
