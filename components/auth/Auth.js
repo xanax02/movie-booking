@@ -7,13 +7,32 @@ import Input from "../UI/Input"
 
 const Auth = (props) => {
 
+    //refs for the userdata
     const username = useRef();
     const email = useRef();
     const  password = useRef();;
     const confPass = useRef();
 
-    const signupHandler = async() => { }
+    //signup button function handler
+    const signupHandler = async() => { 
+        
+        const response = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username.current.value,
+                email: email.current.value,
+                password: password.current.value,
+                confirm_password: confPass.current.value
+            })
+        })
+        const data = await response.json();
 
+    }
+
+    //JSX
   return (
     <div className="h-[100vh] w-[100ww] flex items-center justify-center ">
       <div className="w-[500px] bg-[#121212] rounded-md p-4">
@@ -21,10 +40,10 @@ const Auth = (props) => {
             <h2 className="text-4xl ">{props.action}</h2>
         </div>
         <div>
-          {props.action === 'Signup' && <Input type='text' placeholder='name' />}
-          <Input type='email' placeholder='email' />
-          <Input type='password' placeholder='password' />
-          {props.action === 'Signup' && <Input type='password' placeholder='confirm password' />}
+          {props.action === 'Signup' && <Input type='text' placeholder='name' ref={username} />}
+          <Input type='email' placeholder='email' ref={email} />
+          <Input type='password' placeholder='password' ref={password} />
+          {props.action === 'Signup' && <Input type='password' placeholder='confirm password' ref={confPass} />}
         </div>
         <div className="flex flex-col my-8">
           {props.action === 'Login' && <ButtonRed>Login</ButtonRed>}
