@@ -7,9 +7,9 @@ import { useState } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 const DynamicComponent = dynamic(() => import('@/components/DynamicComponent'))
-// const DynamicComponent2 = dynamic(() => import('../../../react/dynamic-comp/MyComp'), {
-//   loading: () => <p>Loading...</p>,
-// })  
+const DynamicComponent2 = dynamic(() => import('../../../react/dynamic-comp/MyComp'), {
+  loading: () => <p>Loading...</p>,
+})  
 
 
 export default function Home() {
