@@ -1,4 +1,5 @@
 import { connectDatabase } from "@/lib/db";
+import { hashPassword } from "@/lib/auth";
 
 async function handler(req,res) {
     
@@ -11,6 +12,7 @@ async function handler(req,res) {
     if(password !== confirm_password) { res.status(422).json( { message: 'Password doesnot matches' } ); return ; }
 
     //hashing password
+    const hashedPass = await hashPassword(password);
 
     // writing data on db
     const client = await connectDatabase();
@@ -20,7 +22,7 @@ async function handler(req,res) {
     await db.collection('users').insertOne({
         username,
         email,
-        password,
+        hashPassword
     })
     
     // on successful data entry

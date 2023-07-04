@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useRef } from "react"
 
 import ButtonRed from "../UI/ButtonRed"
 import Input from "../UI/Input"
@@ -6,7 +7,12 @@ import Input from "../UI/Input"
 
 const Auth = (props) => {
 
-    
+    const username = useRef();
+    const email = useRef();
+    const  password = useRef();;
+    const confPass = useRef();
+
+    const signupHandler = async() => { }
 
   return (
     <div className="h-[100vh] w-[100ww] flex items-center justify-center ">
@@ -22,7 +28,7 @@ const Auth = (props) => {
         </div>
         <div className="flex flex-col my-8">
           {props.action === 'Login' && <ButtonRed>Login</ButtonRed>}
-          {props.action === 'Signup' && <ButtonRed>Signup</ButtonRed>}
+          {props.action === 'Signup' && <ButtonRed onClick={signupHandler}>Signup</ButtonRed>}
           <div className="flex items-center justify-between">
             {props.action === 'Login' && <Link href="/signup" className="text-center mt-2 text-blue-100" >signup</Link>}
             {props.action === 'Signup' && <Link href="/login" className="text-center mt-2 text-blue-100" >login</Link>}
