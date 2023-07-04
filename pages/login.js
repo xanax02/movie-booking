@@ -1,5 +1,5 @@
+
 import Auth from "@/components/auth/Auth"
-import { useEffect } from "react"
 
 const Signin = () => {
 
