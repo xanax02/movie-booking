@@ -1,11 +1,11 @@
 
 import Auth from "@/components/auth/Auth"
 
-const Signin = () => {
+const login = () => {
 
   return (
-    <Auth />
+    <Auth action='Login' />
   )
 }
 
-export default Signin
+export default login
