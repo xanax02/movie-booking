@@ -15,21 +15,22 @@ const Auth = (props) => {
 
     //signup button function handler
     const signupHandler = async() => { 
-        
-        const response = await fetch('/api/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username.current.value,
-                email: email.current.value,
-                password: password.current.value,
-                confirm_password: confPass.current.value
+        try{
+            await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username.current.value,
+                    email: email.current.value,
+                    password: password.current.value,
+                    confirm_password: confPass.current.value
+                })
             })
-        })
-        const data = await response.json();
-
+        }catch(error) {
+            console.log(error);
+        }
     }
 
     //JSX
