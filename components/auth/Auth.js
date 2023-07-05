@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { useRef } from "react"
+import { signIn } from 'next-auth/react'
 
 import ButtonRed from "../UI/ButtonRed"
 import Input from "../UI/Input"
@@ -35,6 +36,16 @@ const Auth = (props) => {
         }
     }
 
+    //signin button function handler
+    const signinHandler = async() => {
+      const result = await signIn('credentials', {
+       redirect: false,
+       email: email.current.value,
+       password: password.current.value, 
+      })
+      console.log(result);
+    }
+
     //JSX
   return (
     <div className="h-[100vh] w-[100ww] flex items-center justify-center ">
@@ -49,7 +60,7 @@ const Auth = (props) => {
           {props.action === 'Signup' && <Input type='password' placeholder='confirm password' ref={confPass} />}
         </div>
         <div className="flex flex-col my-8">
-          {props.action === 'Login' && <ButtonRed>Login</ButtonRed>}
+          {props.action === 'Login' && <ButtonRed onClick={signinHandler}>Login</ButtonRed>}
           {props.action === 'Signup' && <ButtonRed onClick={signupHandler}>Signup</ButtonRed>}
           <div className="flex items-center justify-between">
             {props.action === 'Login' && <Link href="/signup" className="text-center mt-2 text-blue-100" >signup</Link>}
