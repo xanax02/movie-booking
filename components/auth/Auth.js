@@ -11,7 +11,7 @@ const Auth = (props) => {
     //refs for the userdata
     const username = useRef();
     const email = useRef();
-    const  password = useRef();;
+    const  password = useRef();
     const confPass = useRef();
 
     //signup button function handler
@@ -39,9 +39,9 @@ const Auth = (props) => {
     //signin button function handler
     const signinHandler = async() => {
       const result = await signIn('credentials', {
-       redirect: false,
-       email: email.current.value,
-       password: password.current.value, 
+        email: email.current.value,
+        password: password.current.value, 
+        redirect: false,
       })
       console.log(result);
     }

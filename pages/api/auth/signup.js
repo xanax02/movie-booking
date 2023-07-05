@@ -4,6 +4,7 @@ import { hashPassword } from "@/lib/auth";
 async function handler(req,res) {
     
     const { username, email, password, confirm_password } = req.body;
+    // console.log(username, email, password, confirm_password);
 
     // validation user data
     if(!username) { res.status(422).json( { message: 'Please enter a valid username' } ); return; }
@@ -20,7 +21,8 @@ async function handler(req,res) {
     const db = client.db();
 
     //checking if the user already exists
-    const oldUser = db.collection('users').findOne({email: email});
+    const oldUser = await db.collection('users').findOne({email: email});
+
     if(oldUser) {
         res.status(422).json({ message: 'User already exists' });
         client.close();
@@ -30,7 +32,7 @@ async function handler(req,res) {
     await db.collection('users').insertOne({
         username,
         email,
-        hashedPass
+        password: hashedPass,
     })
 
     res.status(201).json({ message: 'Successfully created new user' });
