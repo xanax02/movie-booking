@@ -49,7 +49,7 @@ const Auth = (props) => {
     //JSX
   return (
     <div className="h-[100vh] w-[100ww] flex items-center justify-center ">
-      <div className="w-[500px] bg-[#121212] rounded-md p-4">
+      <div className="w-[500px] bg-[#121212] rounded-md p-4 mt-[-50px]">
         <div className="w-full text-center mb-4">
             <h2 className="text-4xl ">{props.action}</h2>
         </div>
