@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { useRef } from "react"
 import { signIn } from 'next-auth/react'
+import { useRouter } from "next/router"
 
 import ButtonRed from "../UI/ButtonRed"
 import Input from "../UI/Input"
@@ -13,6 +14,8 @@ const Auth = (props) => {
     const email = useRef();
     const  password = useRef();
     const confPass = useRef();
+
+    const router = useRouter();
 
     //signup button function handler
     const signupHandler = async() => { 
@@ -44,6 +47,9 @@ const Auth = (props) => {
         redirect: false,
       })
       console.log(result);
+      if(!result.error) {
+        router.replace('/')
+      }
     }
 
     //JSX

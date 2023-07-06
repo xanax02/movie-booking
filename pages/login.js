@@ -1,4 +1,4 @@
-
+import { getSession } from "next-auth/react"
 import Auth from "@/components/auth/Auth"
 
 const login = () => {
@@ -23,6 +23,10 @@ export async function getServerSideProps(context) {
         permanent: false
       }
     }
+  }
+
+  return {
+    props: {}
   }
 
 }
