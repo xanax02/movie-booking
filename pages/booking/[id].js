@@ -1,11 +1,21 @@
-import React from 'react'
+import { getMovieDetails } from '@/lib/data'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 
-const [id] = () => {
+const bookingPage = () => {
+
+    const router = useRouter();
+    console.log(router.query.id)
+
+    useEffect(() => {
+        getMovieDetails(router.query.id).then(data => console.log(data));
+    }, [])
+
   return (
     <div>
-      <h1>{id}</h1>
+      <h1>asdfasdfas</h1>
     </div>
   )
 }
 
-export default [id]
+export default bookingPage;
