@@ -11,8 +11,6 @@ const Card = (props) => {
         getImage(props.data.backdrop_path).then(data => setUrl(data))
     })
 
-    console.log(props.data.release_date);
-
     return (
         <Link href={`/booking/upcomming/${props.id}`}>
             <div className='w-[350px] h-[300px] mr-4 bg-[#252525] rounded-lg hover:scale-105 ease-linear duration-200 flex flex-col relative'>
