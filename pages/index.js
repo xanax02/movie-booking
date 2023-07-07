@@ -3,19 +3,20 @@ import { Inter } from 'next/font/google'
 
 
 import Row from '@/components/row/Row'
-import { getUpcoming } from '@/lib/data'
+import { getUpcoming, getTopRated } from '@/lib/data'
 import { useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 
-
 export default function Home() {
 
   const [upcoming, setUpcoming] = useState();
+  const [toprated, setToprated] = useState();
 
   useEffect(() => {
     getUpcoming().then(data => setUpcoming(data?.results));
+    getTopRated().then(data => setToprated(data?.results));
   }, [])
 
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </Head>
       <main className="">
         <Row title='Upcomming' data={upcoming} />
+        <Row title='Top Rated' data={toprated} />
       </main>
     </>
   )
