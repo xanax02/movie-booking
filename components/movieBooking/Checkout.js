@@ -18,7 +18,7 @@ const Checkout = (props) => {
             router.push('/login');
             return;
         }
-        console.log(user.user.email)
+        // console.log(user.user.email)
         const response = await fetch('/api/bookings', {
             method: 'POST',
             body: JSON.stringify({
@@ -33,8 +33,10 @@ const Checkout = (props) => {
                 'Content-Type': 'application/json'
             }
         })
-        const data = await response.data;
-        console.log(data);
+        if(response.ok) {
+            alert("booking successfull");
+            props.clickHandler(false);
+        }
     }   
 
     const cancelHandler = () => {
