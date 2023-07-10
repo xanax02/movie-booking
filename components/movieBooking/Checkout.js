@@ -11,14 +11,30 @@ const Checkout = (props) => {
     const session = getSession();
     const router = useRouter();
 
-    const confirmHandler = () => { 
-        session.then(data => {
-            console.log(data?.user?.email);
-            if(!data) {
-                router.push('/login');
+    const confirmHandler = async() => { 
+        const user = await session;
+        if(!user) {
+            console.log("no user");
+            router.push('/login');
+            return;
+        }
+        console.log(user.user.email)
+        const response = await fetch('/api/bookings', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: user?.user?.email,
+                booking: {
+                    seats: seatRef.current.value,
+                    date: dateRef.current.value,
+                    format: formatRef.current.value,
+                }
+            }),
+            headers: {
+                'Content-Type': 'application/json'
             }
-            console.log('userfound');
         })
+        const data = await response.data;
+        console.log(data);
     }   
 
     const cancelHandler = () => {
