@@ -12,7 +12,7 @@ const Booking = (props) => {
             return !prevState
         })
     }
-    console.log(props.data);
+    // console.log(props.data);
 
     useEffect(() => {
         getImage(props.data.backdrop_path).then(data => setImageUrl(data));

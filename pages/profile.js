@@ -1,6 +1,10 @@
 import { getSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
 const profile = () => {
+
+    console.log(req);
+
     return (
         <div>
             <h1>This is the profile page.</h1>

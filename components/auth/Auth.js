@@ -31,9 +31,9 @@ const Auth = (props) => {
         confirm_password: confPass.current.value
       })
     })
-    console.log(response);
+    // console.log(response);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
   }
 
   //signin button function handler
