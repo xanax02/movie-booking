@@ -20,7 +20,7 @@ const Card = (props) => {
                 </div>
                 {/* details */}
                 <div>
-                    <p>{props.data.original_title}</p>
+                    <p>{props.data?.title}</p>
                 </div>
             </div>
         </Link>

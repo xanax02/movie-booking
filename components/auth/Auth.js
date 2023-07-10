@@ -9,55 +9,52 @@ import Input from "../UI/Input"
 
 const Auth = (props) => {
 
-    //refs for the userdata
-    const username = useRef();
-    const email = useRef();
-    const  password = useRef();
-    const confPass = useRef();
+  //refs for the userdata
+  const username = useRef();
+  const email = useRef();
+  const password = useRef();
+  const confPass = useRef();
 
-    const router = useRouter();
+  const router = useRouter();
 
-    //signup button function handler
-    const signupHandler = async() => { 
-        try{
-            const response = await fetch('/api/auth/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username.current.value,
-                    email: email.current.value,
-                    password: password.current.value,
-                    confirm_password: confPass.current.value
-                })
-            })
-            const data = await response.json();
-            console.log(data);
-        }catch(error) {
-            console.log(error);
-        }
-    }
-
-    //signin button function handler
-    const signinHandler = async() => {
-      const result = await signIn('credentials', {
+  //signup button function handler
+  const signupHandler = async () => {
+    const response = await fetch('api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username.current.value,
         email: email.current.value,
-        password: password.current.value, 
-        redirect: false,
+        password: password.current.value,
+        confirm_password: confPass.current.value
       })
-      console.log(result);
-      if(!result.error) {
-        router.replace('/')
-      }
-    }
+    })
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+  }
 
-    //JSX
+  //signin button function handler
+  const signinHandler = async () => {
+    const result = await signIn('credentials', {
+      email: email.current.value,
+      password: password.current.value,
+      redirect: false,
+    })
+    console.log(result);
+    if (!result.error) {
+      router.replace('/')
+    }
+  }
+
+  //JSX
   return (
     <div className="h-[100vh] w-[100ww] flex items-center justify-center ">
       <div className="w-[500px] bg-[#121212] rounded-md p-4 mt-[-50px]">
         <div className="w-full text-center mb-4">
-            <h2 className="text-4xl ">{props.action}</h2>
+          <h2 className="text-4xl ">{props.action}</h2>
         </div>
         <div>
           {props.action === 'Signup' && <Input type='text' placeholder='name' ref={username} />}

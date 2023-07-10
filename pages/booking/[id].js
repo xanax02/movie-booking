@@ -1,19 +1,20 @@
-import { getMovieDetails } from '@/lib/data'
+import Booking from '@/components/movieBooking/Booking';
+import { getImage, getMovieDetails } from '@/lib/data'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const bookingPage = () => {
 
     const router = useRouter();
-    console.log(router.query.id)
+    const [movie, setMovie] = useState();
 
     useEffect(() => {
-        getMovieDetails(router.query.id).then(data => console.log(data));
+        getMovieDetails(router.query.id).then(data => setMovie(data))
     }, [])
 
   return (
     <div>
-      <h1>asdfasdfas</h1>
+      {movie && <Booking data={movie} />}
     </div>
   )
 }
