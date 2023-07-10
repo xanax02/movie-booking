@@ -1,3 +1,5 @@
+import { getSession} from "next-auth/react";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 
 const Checkout = (props) => {
@@ -6,9 +8,18 @@ const Checkout = (props) => {
     const dateRef = useRef();
     const formatRef = useRef();
 
-    const confirmHandler = () => {
-        
-    }
+    const session = getSession();
+    const router = useRouter();
+
+    const confirmHandler = () => { 
+        session.then(data => {
+            console.log(data?.user?.email);
+            if(!data) {
+                router.push('/login');
+            }
+            console.log('userfound');
+        })
+    }   
 
     const cancelHandler = () => {
         props.clickHandler(false);
