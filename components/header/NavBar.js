@@ -2,10 +2,6 @@
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 const NavBar = () => {
 
   const { data: session } = useSession();
