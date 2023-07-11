@@ -31,6 +31,9 @@ const Auth = (props) => {
         confirm_password: confPass.current.value
       })
     })
+    if(response.ok) {
+      router.replace('/login')
+    }
     // console.log(response);
     const data = await response.json();
     // console.log(data);
@@ -51,7 +54,7 @@ const Auth = (props) => {
 
   //JSX
   return (
-    <div className="h-[100vh] w-[100ww] flex items-center justify-center ">
+    <div className="h-full w-[100ww] flex items-center justify-center mt-[200px]">
       <div className="w-[500px] bg-[#121212] rounded-md p-4 mt-[-50px]">
         <div className="w-full text-center mb-4">
           <h2 className="text-4xl ">{props.action}</h2>

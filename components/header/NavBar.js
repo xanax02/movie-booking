@@ -18,8 +18,8 @@ const NavBar = () => {
       </div>
       {/* controls */}
       <div>
-        {!session && <Link href={'/login'} >Login</Link>}
-        {session && <Link href={'/profile'}>profile</Link> }
+        {!session && <Link href={'/login'}  className="text-lg font-semibold">Login</Link>}
+        {session && <Link href={'/profile'} className="text-lg font-semibold">profile</Link> }
       </div>
     </div>
   )

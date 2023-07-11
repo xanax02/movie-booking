@@ -34,7 +34,7 @@ const Checkout = (props) => {
             }
         })
         if(response.ok) {
-            alert("booking successfull");
+            alert("booking successful");
             props.clickHandler(false);
         }
     }   
